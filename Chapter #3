@@ -1,0 +1,235 @@
+//3-1 N을 입력받은 뒤, 구구단 N단을 출력하는 프로그램을 작성하시오. 출력 형식에 맞춰서 출력하면 된다.
+
+#include <stdio.h>
+
+int main() {
+	int a;
+	scanf_s("%d", &a);
+	for (int i = 1; i < 10; i++)
+	{
+		printf("%d * %d = %d\n", a, i, a*i);
+	}
+	return 0;
+}
+
+//scanf를 통해 정수형으로 지정된 a를 설정합니다. 그 다음 반복문을 통해 a * 1 부터 a * 9까지 실행되게 반복합니다.
+
+![image](https://user-images.githubusercontent.com/80377779/115979803-040b7e80-a5c3-11eb-9a81-db104c33ef13.png)
+
+
+
+/*3-2 두 정수 A와 B를 입력받은 다음, A+B를 출력하는 프로그램을 작성하시오.
+첫째 줄에 테스트 케이스의 개수 T가 주어진다.
+각 테스트 케이스는 한 줄로 이루어져 있으며, 각 줄에 A와 B가 주어진다. (0 < A, B < 10)*/
+
+#define _CRT_SECURE_NO_WARNINGS
+
+#include<stdio.h>
+#include<stdlib.h>
+
+int main(void) {
+	int size, a, b;
+
+	scanf("%d", &size);
+
+	int *num = (int*)malloc(sizeof(int) * size);
+
+
+	for (int i = 0; i < size; i++) {
+		scanf("%d %d", &a, &b);
+		num[i] = a + b;
+	}
+
+	for (int i = 0; i < size; i++) {
+		printf("%d\n",num[i]);
+	}
+
+	free(num);
+
+	return 0;
+}
+
+/*int타입의 변수 size, a, b를 선언한다. 사용자에게 size를 입력받고 입력받은만큼 int num포인터 변수를 만들어서 size만큼의 크기를 동적할당 해준다.
+그리고 처음에 입력한 size만큼의 사용자로부터 a와 b를 입력받고 a + b의 값을 num[i]에 저장을 한다. for문을 이용하여 size크기만큼 num[i]를 출력해준다. 
+마지막으로 동적할당 해줬던 변수를 free()를 이용하여 해제해준다.*/
+
+![image](https://user-images.githubusercontent.com/80377779/115979819-1980a880-a5c3-11eb-9eac-ad772bc85a1e.png)
+
+//3-3 n이 주어졌을 때, 1부터 n까지 합을 구하는 프로그램을 작성하시오. 첫째 줄에 n (1 ≤ n ≤ 10,000)이 주어진다.
+
+#include <stdio.h>
+int main() {
+	int n = 5;
+	int count = 0;
+	for (int i = 1; i <= n; i++)
+	{
+		count = count + i;
+	}
+	printf("%d\n", count);
+	return 0;
+}
+
+//n의 값은 임의로 7로 정했습니다. Count를 0으로 지정한다음에 반복문을 통해 count에 1부터 n에 해당하는 값을 더해 count값을 정하도록했습니다.
+
+![image](https://user-images.githubusercontent.com/80377779/115979830-28fff180-a5c3-11eb-8fcb-25ac0fd3ca11.png)
+
+//3-5 자연수 N이 주어졌을 때, 1부터 N까지 한 줄에 하나씩 출력하는 프로그램을 작성하시오. 첫째 줄에 100,000보다 작거나 같은 자연수 N이 주어진다.
+
+#include <stdio.h>
+int main() {
+	int n = 4;
+	for (int i = 1; i <= n; i++)
+	{
+		printf("%d\n", i);
+	}
+	
+	return 0;
+}
+
+//n의 값은 임의로 4로 정했습니다. 그 다음 1부터 n에 해당하는 값을 각각 한 줄에 하나씩 출력하게 반복문을 사용해 만들었습니다. 
+
+![image](https://user-images.githubusercontent.com/80377779/115979838-33ba8680-a5c3-11eb-95a4-5b0eb6d04833.png)
+
+//3-6자연수 N이 주어졌을 때, N부터 1까지 한 줄에 하나씩 출력하는 프로그램을 작성하시오.
+
+#define _CRT_SECURE_NO_WARNINGS
+
+#include<stdio.h>
+
+int main(void) {
+	int num;
+
+	scanf("%d", &num);
+
+	for (int i = num; i > 0; i--) {
+		printf("%d\n", num);
+		num--;
+	}
+
+	return 0;
+}
+
+/*Int형인 변수 num을 선언하고 사용자에게 입력받은 값을 num의 주소에 저장한다. 
+for문에서 int형 i를 선언하고 num을 i에 할당하면서 1번 실행할때마다 i-- 를 해준다. 
+한번 실행할 때마다 num의 값을 출력하고 num--를 함으로써 num이 차례대로 1까지 줄어들면서 출력된다.*/\
+
+![image](https://user-images.githubusercontent.com/80377779/115979844-42a13900-a5c3-11eb-8b38-d02fa8f43d74.png)
+
+
+/*3-7 두 정수 A와 B를 입력받은 다음, A+B를 출력하는 프로그램을 작성하시오. 첫째 줄에 테스트 케이스의 개수 T가 주어진다. 
+각 테스트 케이스는 한 줄로 이루어져 있으며, 각 줄에 A와 B가 주어진다. (0 < A, B < 10)*/
+
+#include <stdio.h>
+int main() {
+	int T = 3;
+	int a, b;
+	for (int i = 1; i <= T; i++)
+	{
+		scanf_s("%d %d", &a, &b);
+		printf("Case #%d = %d\n", i, a + b);
+	}
+	
+	return 0;
+}
+
+//T는 임의로 3으로 정했습니다. 반복문을 통해 1부터 T까지 반복하게 만들었습니다. 반복문안에서는 정수형 a, b를 받고 각각의 Case번호와 입력받은 a와b의 합을 출력하게 했습니다.
+
+![image](https://user-images.githubusercontent.com/80377779/115979864-5a78bd00-a5c3-11eb-83e5-de3a74bbf93a.png)
+
+
+/*3-8두 정수 A와 B를 입력받은 다음, A+B를 출력하는 프로그램을 작성하시오.
+첫째 줄에 테스트 케이스의 개수 T가 주어진다.
+각 테스트 케이스는 한 줄로 이루어져 있으며, 각 줄에 A와 B가 주어진다. (0 < A, B < 10)*/
+
+#define _CRT_SECURE_NO_WARNINGS
+
+#include<stdio.h>
+#include<stdlib.h>
+
+int main(void) {
+	int size;
+	int a, b;
+
+	scanf("%d", &size);
+
+	int* num = (int*)malloc(sizeof(int) * size);
+	int* num2 = (int*)malloc(sizeof(int) * size);
+	int* num3 = (int*)malloc(sizeof(int) * size);
+
+	for (int i = 0; i < size; i++) {
+		scanf("%d %d", &a, &b);
+		num[i] = a + b;
+		num2[i] = a;
+		num3[i] = b;
+	}
+
+	for (int i = 0; i < size; i++) {
+		printf("Case #%d: %d + %d = %d\n",i+1, num2[i], num3[i], num[i]);
+	}
+
+	free(num);
+	free(num2);
+	free(num3);
+
+	return 0;
+}
+
+/*int형 변수 size, a, b를 선언하고 사용자로부터 입력받은값을 size주소에 저장한다.
+size의 크기만큼 동적할당을 위해 int* num ~ num3를 만든다.
+3개를 만드는 이유는 a+b를 num에 넣고 a의 값을 num2 배열에 넣고 b의 값을 num3에 넣기 위함이다.
+for문을 이용하여 size크기만큼 반복을 실행하고 이전에 말한대로 각각의 배열에 대입한다.
+for문을 이용하여 size크기만큼 반복을 실행하고 문제에서 요구한 모양으로 맞춰준대로 출력한다.
+마지막으로 동적할당한 포인터변수들을 free()를 이용하여 동적할당을 해제한다.*/
+
+![image](https://user-images.githubusercontent.com/80377779/115979873-6b293300-a5c3-11eb-83de-e19eada45f85.png)
+
+
+//3-9 첫째 줄에는 별 1개, 둘째 줄에는 별 2개, N번째 줄에는 별 N개를 찍는 문제. 첫째 줄에 N(1 ≤ N ≤ 100)이 주어진다.
+
+#include <stdio.h>
+int main() {
+	int n = 5;
+	for (int i = 1; i <= n; i++)
+	{
+		for (int j = 0; j < i ; j++) 
+		{
+			printf("*");
+		}
+		printf("\n");
+	}
+	
+	return 0;
+}
+
+/*임의로 n값을 5로 정했습니다. i를 사용한 반복문과 j를 사용한 반복문 두개를 사용했는데, i에서는 i번째 줄에서 j반복문을 i번 반복, 총 n번 한다는 의미입니다. 
+그리고 j에서의 반복문은 *출력을 i번 한다는 의미입니다. 이후에 j반복문이 끝나면 줄바꿈을 하고 다음 줄로 넘어가게 됩니다.*/
+
+![image](https://user-images.githubusercontent.com/80377779/115979882-78462200-a5c3-11eb-9b88-aca0081cc5a9.png)
+
+//3-10 첫째 줄에는 별 1개, 둘째 줄에는 별 2개, N번째 줄에는 별 N개를 찍는 문제 하지만, 오른쪽을 기준으로 정렬한 별을 출력하시오.
+
+#define _CRT_SECURE_NO_WARNINGS
+
+#include<stdio.h>
+
+int main(void) {
+	int num;
+
+	scanf("%d", &num);
+
+	for (int i = 0; i < num; i++) {
+		for (int j = 0; j < num - (i + 1); j++)
+			printf(" ");
+		for (int j = 0; j < 1 + i; j++)
+			printf("*");
+		printf("\n");
+	}
+	return 0;
+}
+
+/*int형 변수를 선언하고 사용자에게 입력받은 값을 num주소에 저장한다. 첫번재 for문은 몇단으로 쌓을건지 결정하기 위한 for문으로 num까지 반복실행하면 된다.
+내부의 첫번째 for문은 앞의 공백을 표시하기 위한 for문으로 num – (i+1)까지 반복실행하면 i가 커질때마다 공백은 한칸씩 줄어들게 된다.
+내부의 두번째 for문은 *을 의미하는 for문으로 i + 1까지 반복실행하게되면 i가 증가할때마다 *의 개수도 증가하게 된다. 
+내부의 for문을 실행한 후(1줄 완성)에 줄바꿈 한번 해줘서 다음 줄로 넘어가게 된다.*/
+
+![image](https://user-images.githubusercontent.com/80377779/115979902-8eec7900-a5c3-11eb-84b2-6ce6e2f536f8.png)
