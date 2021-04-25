@@ -1,0 +1,21 @@
+//1-1 Hello World!를 출력하시오. 
+#include <stdio.h>
+
+int main()
+{
+    printf("Hello World!"); 
+}
+//printf를 사용해 ()안의 내용 출력합니다.
+
+//1-2 두 줄에 걸쳐 "강한친구 대한육군"을 한 줄에 한 번씩 출력한다.
+#include<stdio.h>
+
+int main(void) {
+
+	printf("%s\n","강한친구 대한육군");
+	printf("%s\n","강한친구 대한육군");
+
+	return 0;
+}
+//printf()안의 내용을 2회 출력합니다.
+
