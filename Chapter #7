@@ -1,0 +1,367 @@
+//7-1 알파벳 소문자, 대문자, 숫자 0-9중 하나가 주어졌을 때, 주어진 글자의 아스키 코드값을 출력하는 프로그램을 작성하시오. 알파벳 소문자, 대문자, 숫자 0-9 중 하나가 첫째 줄에 주어진다.
+
+#include <stdio.h>
+
+int main() {
+	char a;
+	scanf_s("%c", &a);
+	printf("%d", a);
+	return 0;
+}
+
+//문자형 a를 %d로 출력해 입력한 글자의 아스키 코드값을 출력하는 프로그램입니다.
+![image](https://user-images.githubusercontent.com/80377779/118081872-255bcf80-b3f7-11eb-9cf4-f40fd593e959.png)
+
+//7-2 N개의 숫자가 공백 없이 쓰여있다. 이 숫자를 모두 합해서 출력하는 프로그램을 작성하시오. 
+
+#define _CRT_SECURE_NO_WARNINGS
+
+#include<stdio.h>
+#include<string.h>
+
+int main(void) {
+	int size, sum=0;
+	char array[101];
+
+	scanf("%d", &size);
+	scanf("%s", array);
+
+	for (int i = 0; i < size; i++) {
+		sum += array[i] - '0';
+	}
+	printf("%d", sum);
+
+	return 0;
+}
+
+/*사용자에게 입력받은 수를 size주소에 값을 저장하고 다음에 오는 숫자를 문자열의 형태로 배열에 저장한다.
+for문을 이용해서 문자열의 크기까지 각각의 자리수를 sum변수에 값을 더해준다. 
+이 때, 중요한 것은 컴퓨터에 저장되는 ASCII코드를 숫자가 아닌 수로 나타내기 위해서는 – ‘0’을 해준다.*/
+![image](https://user-images.githubusercontent.com/80377779/118081921-415f7100-b3f7-11eb-8fd0-1b2ee11da162.png)
+
+/*7-3 알파벳 소문자로만 이루어진 단어 S가 주어진다. 
+각각의 알파벳에 대해서, 단어에 포함되어 있는 경우에는 처음 등장하는 위치를, 포함되어 있지 않은 경우에는 -1을 출력하는 프로그램을 작성하시오.
+첫째 줄에 단어 S가 주어진다. 단어의 길이는 100을 넘지 않으며, 알파벳 소문자로만 이루어져 있다. 
+각각의 알파벳에 대해서, a가 처음 등장하는 위치, b가 처음 등장하는 위치, ... z가 처음 등장하는 위치를 공백으로 구분해서 출력한다.*/
+
+#include <stdio.h>
+
+
+int main(void) {
+	char S[101] = { 0, };
+	char A[27] = { 'a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z', 0 }; //직접 알파벳 소문자를 넣었습니다.
+
+	scanf_s("%s", S, sizeof(S));
+
+	for (int i = 0; i < 26; i++) {
+		int C = 0; 
+		for (int j = 0; j < sizeof(S); j++) {
+			if (A[i] == S[j]) { //만약 A내부의 원소와 S내부의 원소가 같다면
+				C = j; //j값을 C에 넣어줍니다.
+				break;
+			}
+			
+		}
+		if (A[i] == S[C]) printf("%d ", C); //C에 위치한 값이 A내부에 존재한다면 C를 출력하고
+		else printf("-1 "); //아니라면 -1을 출력합니다.
+	}
+	return 0;
+
+}
+
+//직접 입력한 소문자 문자열에 포함되는 알파벳 위치에는 등장하는 위치를 출력하고 아닌 경우에는 -1을 출력하는 프로그램입니다.
+![image](https://user-images.githubusercontent.com/80377779/118081987-5dfba900-b3f7-11eb-97b8-735e16926f59.png)
+
+/*7-4 문자열 S를 입력받은 후에, 각 문자를 R번 반복해 새 문자열 P를 만든 후 출력하는 프로그램을 작성하시오.
+즉, 첫 번째 문자를 R번 반복하고, 두 번째 문자를 R번 반복하는 식으로 P를 만들면 된다. S에는 QR Code "alphanumeric" 문자만 들어있다.*/
+
+#define _CRT_SECURE_NO_WARNINGS
+
+#include<stdio.h>
+#include<string.h>
+
+int main(void) {
+	int size, num;
+	char array[20];
+
+	scanf("%d", &size);
+
+	for (int i = 0; i < size; i++) {
+		scanf("%d %s", &num, array);
+		for (int j = 0; j < strlen(array); j++) {
+			for (int k = 0; k < num; k++) {
+				printf("%c", array[j]);
+			}
+		}
+		printf("\n");
+	}
+
+	return 0;
+}
+
+/*사용자에게 입력받은 수를 size변수 주소에 값을 저장한다. 
+for (int i = 0; i < size; i++)는 size만큼 반복해서 사용자에게 수와 문자열을 저장받아 num의 주소에 값을 저장하고 array배열에 문자열을 저장한다.
+size만큼 반복되는 for문 내부에서 이중 for문의 역할은 외부 for문은 입력받은 문자열이 0번 인덱스부터 배열의 길이까지 반복되는 동안 
+내부 for문은 새로운 변수 k = 0을 만들고 k가 입력받은 num만큼 반복하면서 array배열에 저장되어있는 j인덱스를 반복실행한다.
+그리고 이중for문이 끝나면 줄바꿈을 해줌으로써 다음 입력받는 값을 보기 쉽게 만들어준다.*/
+![image](https://user-images.githubusercontent.com/80377779/118082037-753a9680-b3f7-11eb-99a6-1fd013406c68.png)
+
+/*7-5 알파벳 대소문자로 된 단어가 주어지면, 이 단어에서 가장 많이 사용된 알파벳이 무엇인지 알아내는 프로그램을 작성하시오.
+단, 대문자와 소문자를 구분하지 않는다. 첫째 줄에 알파벳 대소문자로 이루어진 단어가 주어진다.
+첫째 줄에 이 단어에서 가장 많이 사용된 알파벳을 대문자로 출력한다. 단, 가장 많이 사용된 알파벳이 여러 개 존재하는 경우에는 ?를 출력한다.*/
+
+#include <stdio.h>
+#include <stdlib.h>
+
+int arr[26] = { 0, }; //배열의 초기화입니다.
+
+int main() {
+    char ch;
+    int a, b;
+    int max = 0;
+
+    while ((ch = toupper(getchar())) != '\n') { //ch에 getchar와 toupper함수를 이용해 대문자로 변환해 직접 집어넣습니다.
+        a = ++arr[ch - 'A'];
+        if (max < a) { //max가 a보다 작을경우
+            max = a; //a값을 max에 넣고
+            b = ch - 'A'; //b에 해당 값을 넣습니다.
+        }
+    }
+    for (int i = 0; i < 26; i++) {
+        if (max == arr[i] && i != b) { //만약 arr내부 값이 max와 같고 i가 b와 다르다면
+            printf("?"); //?를 출력합니다.
+            break;
+        }
+    }
+    printf("%c", b + 'A'); //가장 많이 사용된 문자를 출력합니다.
+}
+
+//대소문자 구별없이 직접 입력한 문자열에서 가장 많이 사용된 문자를 출력하는 프로그램입니다.
+![image](https://user-images.githubusercontent.com/80377779/118082103-8b485700-b3f7-11eb-9fe0-55d5f843d4cc.png)
+
+/*7-6 영어 대소문자와 띄어쓰기만으로 이루어진 문자열이 주어진다. 이 문자열에는 몇 개의 단어가 있을까? 
+이를 구하는 프로그램을 작성하시오. 단, 한 단어가 여러 번 등장하면 등장한 횟수만큼 모두 세어야 한다.
+첫 줄에 영어 대소문자와 띄어쓰기로 이루어진 문자열이 주어진다. 이 문자열의 길이는 1,000,000을 넘지 않는다. 
+단어는 띄어쓰기 한 개로 구분되며, 공백이 연속해서 나오는 경우는 없다. 또한 문자열의 앞과 뒤에는 공백이 있을 수도 있다.*/
+
+#define _CRT_SECURE_NO_WARNINGS
+
+#include<stdio.h>
+#include<string.h>
+
+int main(void) {
+	int sum = 0;
+	char space = ' ';
+	char array[1000000];
+
+	gets(array); // 공백포함 문자열 입력 받기
+
+	if (array[0] == space) {
+		for (int i = 1; i < strlen(array); i++) {
+			if (array[i] == space)
+				sum++;
+		}
+		printf("%d", sum + 1);
+	}
+
+	else {
+		for (int i = 0; i < strlen(array); i++) {
+			if (array[i] == space)
+				sum++;
+		}
+		printf("%d", sum + 1);
+	}
+
+	return 0;
+}
+
+/*공백포함하여 문자열을 입력받기 위해 gets함수를 이용해서 배열array에 문자열을 저장한다. 
+space변수는 ‘ ‘을 통해서 공백을 확인한다. 배열의 첫번째 인덱스가 space라면 for문은 1부터 시작해서 문자열의 크기까지 반복하며 
+array[i]가 space일 경우 sum++을 해주고 sum + 1을 출력한다. 즉, 1번째 인덱스부터 반복을 시작해서 띄어쓰기의 개수를 세고 띄어쓰기보다 1개 많은 단어가 존재한다.
+else문에서는 0번째 인덱스부터 시작하고 로직은 위의 if문과 같다.*/
+![image](https://user-images.githubusercontent.com/80377779/118082165-a74bf880-b3f7-11eb-9bee-343976570899.png)
+
+/*7-7 상근이의 동생 상수는 수학을 정말 못한다. 상수는 숫자를 읽는데 문제가 있다. 
+이렇게 수학을 못하는 상수를 위해서 상근이는 수의 크기를 비교하는 문제를 내주었다. 
+상근이는 세 자리 수 두 개를 칠판에 써주었다. 그 다음에 크기가 큰 수를 말해보라고 했다. 
+상수는 수를 다른 사람과 다르게 거꾸로 읽는다. 예를 들어, 734와 893을 칠판에 적었다면, 상수는 이 수를 437과 398로 읽는다. 
+따라서, 상수는 두 수중 큰 수인 437을 큰 수라고 말할 것이다. 
+두 수가 주어졌을 때, 상수의 대답을 출력하는 프로그램을 작성하시오. 첫째 줄에 상근이가 칠판에 적은 두 수 A와 B가 주어진다. 
+두 수는 같지 않은 세 자리 수이며, 0이 포함되어 있지 않다.*/
+
+#define _CRT_SECURE_NO_WARNINGS //scanf_s로 해결되지않아서 넣었습니다.
+#include <stdio.h>
+
+char n1[4]; //입력할 숫자가
+char n2[4]; //들어갈 배열입니다.
+
+int main() {
+	scanf("%s %s", n1, n2); //n1과 n2에 직접 입력합니다.
+
+	for (int i = 2; i >= 0; i--) { //2 1 0 순으로 확인합니다.
+		if (n1[i] > n2[i]) { //만약 n1의 원소가 더 크다면
+			printf("%c%c%c", n1[2], n1[1], n1[0]); //n1을 출력합니다.
+			break;
+		}
+		else if (n1[i] < n2[i]) { //반대로 n2가 크다면
+			printf("%c%c%c", n2[2], n2[1], n2[0]); // n2를 출력합니다.
+			break;
+		}
+	}
+	return 0;
+}
+
+//3자리 숫자를 역으로 읽어 대소를 비교해 큰 수를 출력하는 프로그램입니다.
+![image](https://user-images.githubusercontent.com/80377779/118082231-c0ed4000-b3f7-11eb-9859-02d541958bed.png)
+
+/*7-8 상근이의 할머니는 아래 그림과 같이 오래된 다이얼 전화기를 사용한다.
+전화를 걸고 싶은 번호가 있다면, 숫자를 하나를 누른 다음에 금속 핀이 있는 곳 까지 시계방향으로 돌려야 한다. 
+숫자를 하나 누르면 다이얼이 처음 위치로 돌아가고, 다음 숫자를 누르려면 다이얼을 처음 위치에서 다시 돌려야 한다.
+숫자 1을 걸려면 총 2초가 필요하다. 1보다 큰 수를 거는데 걸리는 시간은 이보다 더 걸리며, 한 칸 옆에 있는 숫자를 걸기 위해선 1초씩 더 걸린다.
+상근이의 할머니는 전화 번호를 각 숫자에 해당하는 문자로 외운다. 즉, 어떤 단어를 걸 때, 각 알파벳에 해당하는 숫자를 걸면 된다. 예를 들어, UNUCIC는 868242와 같다.
+할머니가 외운 단어가 주어졌을 때, 이 전화를 걸기 위해서 필요한 최소 시간을 구하는 프로그램을 작성하시오.*/
+![image](https://user-images.githubusercontent.com/80377779/118082259-d06c8900-b3f7-11eb-9fec-f76d247ed689.png)
+
+#define _CRT_SECURE_NO_WARNINGS
+
+#include<stdio.h>
+#include<string.h>
+
+int main(void) {
+	int num;
+	int sum = 0;
+	char array[15];
+
+	scanf("%s", array);
+
+	for (int i = 0; i < strlen(array); i++) {
+		if (array[i] == 'A' || array[i] == 'B' || array[i] == 'C') num = 3;
+		else if (array[i] == 'D' || array[i] == 'E' || array[i] == 'F') num = 4;
+		else if (array[i] == 'G' || array[i] == 'H' || array[i] == 'I') num = 5;
+		else if (array[i] == 'J' || array[i] == 'K' || array[i] == 'L') num = 6;
+		else if (array[i] == 'M' || array[i] == 'N' || array[i] == 'O') num = 7;
+		else if (array[i] == 'P' || array[i] == 'Q' || array[i] == 'R' || array[i] == 'S') 
+num = 8;
+		else if (array[i] == 'T' || array[i] == 'U' || array[i] == 'V') num = 9;
+		else if (array[i] == 'W' || array[i] == 'X' || array[i] == 'Y' || array[i] == 'Z') 
+num = 10;
+		else num = 11;
+		sum += num;
+	}
+	printf("%d", sum);
+
+	return 0;
+}
+
+/*사용자에게 문자열을 입력받고 for문으로 0번째 인덱스부터 문자열의 길이까지 반복을 하면서 if, else if로 번호에 해당하는 문자를 or 조건으로 문자를 숫자로 바꿔서 걸리는 초를 계산했다. 
+ABC는 1에 해당하고 다이얼에서 돌리는데 3초가 걸리기 때문에 각각의 문자가 해당하는 숫자에 +2 해준값을 num에 대입하고 sum에 더해주면서 총 걸리는 시간을 계산하고 sum을 출력해준다.*/
+![image](https://user-images.githubusercontent.com/80377779/118082290-debaa500-b3f7-11eb-818c-08c6fbc0874a.png)
+
+/*7-9 예전에는 운영체제에서 크로아티아 알파벳을 입력할 수가 없었다. 따라서, 다음과 같이 크로아티아 알파벳을 변경해서 입력했다. 
+예를 들어, ljes=njak은 크로아티아 알파벳 6개(lj, e, š, nj, a, k)로 이루어져 있다. 
+단어가 주어졌을 때, 몇 개의 크로아티아 알파벳으로 이루어져 있는지 출력한다. dž는 무조건 하나의 알파벳으로 쓰이고, d와 ž가 분리된 것으로 보지 않는다. 
+lj와 nj도 마찬가지이다. 위 목록에 없는 알파벳은 한 글자씩 센다. 첫째 줄에 최대 100글자의 단어가 주어진다. 알파벳 소문자와 '-', '='로만 이루어져 있다. 
+단어는 크로아티아 알파벳으로 이루어져 있다. 문제 설명의 표에 나와있는 알파벳은 변경된 형태로 입력된다. 입력으로 주어진 단어가 몇 개의 크로아티아 알파벳으로 이루어져 있는지 출력한다.*/
+![image](https://user-images.githubusercontent.com/80377779/118082317-ec702a80-b3f7-11eb-8db2-5e012f2e2ea0.png)
+
+
+#define _CRT_SECURE_NO_WARNINGS
+#include <stdio.h>
+
+int main() {
+	char str[101];
+	int count = 0; //크로아티아 알파벳의 수를 측정할 변수입니다.
+	scanf("%s", str);
+	for (int i = 0; str[i] != '\0'; i++) { //문자열 str의 원소가 공백이 아닐때까지 반복합니다.
+
+		if (i >= 100) break; //만약 i가 100이상이면 break합니다.
+
+		if (str[i] == 'd' || str[i] == 'c') { //str의 원소가 d또는 c일 경우
+			if (str[i + 1] == '=' || str[i + 1] == '-') { //그 다음 원소가 =또는 -이면
+				count++; //count를 추가하고
+				i++; //i도 추가합니다.
+			}
+			else if (str[i + 1] == 'z' && str[i + 2] == '=') { //그게 아니라 다음 원소가 z이고 그 다음은 =이면
+				count++; //count를 추가하고
+				i += 2; //다음 원소의 다음까지 갔기때문에 i를 2번 추가합니다.
+			}
+			else count++; //그외엔 count를 추가합니다.
+		}
+
+		else if (str[i] == 'n' || str[i] == 'l') { //만약 str의 원소가 n또는 l일 경우
+			if (str[i + 1] == 'j') { //그 다음 원소가 j면
+				count++; //count를 추가하고
+				i++; //i도 추가합니다.
+			}
+			else count++; //그외엔 count를 추가합니다.
+		}
+
+		else if (str[i] == 's' || str[i] == 'z') { //만약 str의 원소가 s또는 z일 경우
+			if (str[i + 1] == '=') { //그 다음 원소가 =면
+				count++; //count를 추가하고
+				i++; //i도 추가합니다.
+			}
+			else count++; //=이 아니라면 count를 추가합니다.
+		}
+		else count++; //나머지의 경우는 count를 추가합니다.
+	}
+	printf("%d", count); //count의 크기가 크로아티아 알파벳의 수입니다.
+	return 0;
+}
+
+//직접 입력한 문자열이 몇 개의 크로아티아 알파벳으로 이루어져 있는지 출력하는 프로그램입니다. 모든 경우를 따져 만들었습니다.
+![image](https://user-images.githubusercontent.com/80377779/118082344-f6922900-b3f7-11eb-993f-2d6f5126d4ec.png)
+
+/*7-10 그룹 단어란 단어에 존재하는 모든 문자에 대해서, 
+각 문자가 연속해서 나타나는 경우만을 말한다. 예를 들면, ccazzzzbb는 c, a, z, b가 모두 연속해서 나타나고, 
+kin도 k, i, n이 연속해서 나타나기 때문에 그룹 단어이지만, aabbbccb는 b가 떨어져서 나타나기 때문에 그룹 단어가 아니다.
+단어 N개를 입력으로 받아 그룹 단어의 개수를 출력하는 프로그램을 작성하시오.*/
+
+#define _CRT_SECURE_NO_WARNINGS
+
+#include<stdio.h>
+#include<string.h>
+
+int main(void) {
+	int size;
+	int count = 0;
+	int sum = 0;
+	char array[100];
+
+	scanf("%d", &size);
+	
+	for (int i = 0; i < size; i++) {
+		
+		scanf("%s", array);
+
+		char array2[100] = "";
+		int index = 0;
+
+		for (int j = 0; j < strlen(array); j++) { //입력받은 문자열을 array2배열에 1개의 문자씩만 대입
+			if (array[j] != array[j + 1]) {
+				array2[index++] = array[j];
+			}
+			array2[index] = NULL;
+		}
+		for (int k = 0; k < strlen(array2) - 1; k++) { //array2 배열 내 중복 문자 존재 여부 확인
+			for (int l = k+1; l < strlen(array2); l++) {
+				if (array2[k] == array2[l]) 
+					count++;
+			}
+		}
+		if (count == 0) //count가 0이다. 즉, 같은 문자가 없으면 sum++
+			sum++;
+		count = 0; //count값 0으로 초기화
+	}
+	printf("%d", sum);
+}
+
+/*사용자에게 입력받은 수를 size변수 주소에 값을 저장하고 for문을 통해서 size만큼 반복한다.
+사용자에게 문자열을 입력받은 후 새로운 배열 array2 100칸 모두 빈칸으로 초기화해주고 int index를 0으로 초기화 해준다. 
+j변수 for문을 통해서 if (array[j] != array[j + 1])으로 문자열을 1개의 값을 모두 array[index++]에 저장한다. 
+즉 입력받은 문자열이 happy였다면 array2에는 hapy가 저장되는 것이다. 그리고 마지막 array2[index]에는 NULL값을 입력해준다.
+k변수 for문은 이중for문을 이용하여 array2에 같은문자가 존재하는지 확인하고 같은문자가 있으면 count변수를 1증가시킨다. 
+같은문자가 없을 때(count == 0)만 sum++을 통해서 그룹단어의 개수를 세준다.
+ex) aabcda가 있으면 j변수에서 처음 2개의 aa는 a로바뀌게 되고 array2에는 abcda가 존재한다. 
+그럼 같은문 같은 존재한다는 얘기는 문자가 떨어져서 나타나있다는 얘기가 된다. 따라서 count가 증가하면은 그룹문자가 아니다.*/
+![image](https://user-images.githubusercontent.com/80377779/118082376-0c075300-b3f8-11eb-8c90-bcf4ce2e9e76.png)
