@@ -1,0 +1,352 @@
+/*9-1 주어진 수 N개 중에서 소수가 몇 개인지 찾아서 출력하는 프로그램을 작성하시오. 
+첫 줄에 수의 개수 N이 주어진다. N은 100이하이다. 
+다음으로 N개의 수가 주어지는데 수는 1,000 이하의 자연수이다. 주어진 수들 중 소수의 개수를 출력한다.*/
+
+#include <stdio.h>
+#include <stdbool.h> //boolean을 사용하기위해 넣었습니다. 
+
+int main() {
+    int count = 0;
+    int k = 0;
+    int num[101];
+    bool TF = true;
+    scanf_s("%d", &k); //k값을 직접 입력합니다.
+
+    for (int i = 0; i < k; i++) { //count의 개수만큼
+        scanf_s("%d", &num[i]); //num배열에 값을 집어넣습니다.
+
+        if (num[i] != 1) { //소수를 판별하는 조건문, 반복문입니다.
+            for (int j = 2; j < num[i]; j++) {
+                if (num[i] % j == 0) {
+                    TF = false;
+                    break;
+                }
+            }
+
+            if (TF == true) count++; //소수라면 count에 1을 더해줍니다.
+            else TF = true;
+        }
+    }
+    printf("%d", count); //소수의 갯수인 count를 출력합니다.
+}
+
+//입력할 수의 개수를 입력하고 입력한 수 중에서 소수의 개수를 출력하는 프로그램입니다.
+![image](https://user-images.githubusercontent.com/80377779/118082912-fe060200-b3f8-11eb-99ee-bddce67f1dff.png)
+
+/*9-2 자연수 M과 N이 주어질 때 M이상 N이하의 자연수 중 소수인 것을 모두 골라 이들 소수의 합과 최솟값을 찾는 프로그램을 작성하시오.
+예를 들어 M=60, N=100인 경우 60이상 100이하의 자연수 중 소수는 61, 67, 71, 73, 79, 83, 89, 97 총 8개가 있으므로, 이들 소수의 합은 620이고, 최솟값은 61이 된다.*/
+
+#define _CRT_SECURE_NO_WARNINGS
+
+#include<stdio.h>
+
+int main(void) {
+	int num1, num2, cnt = 0;
+	int j, k = 0;
+	int sum = 0;
+	int array[100];
+	scanf("%d", &num1);
+	scanf("%d", &num2);
+
+	for (int i = num1; i <= num2; i++) {
+
+		for (j = 2; j < i; j++) {
+			if (i % j == 0) break;
+		}
+		if (i == j) {
+			array[k++] = i;
+			cnt++;
+		}
+			
+	}
+	for (int i = 0; i <cnt; i++) {
+		sum += array[i];
+	}
+	if (sum == 0) printf("-1");
+	else printf("합계 : %d , 최소값 : %d", sum, array[0]);
+
+	return 0;
+}
+
+/*사용자에게 입력받은 두 정수를 num1, num2라고 했을 때, 이중 for문으로 num1 ~ num2 사이에 있는 소수를 판별한다. 
+외부 for문은 num1부터 num2까지 반복하기 위함이고 내부 for문은 num1이 소수인지 아닌지 판별하기 위함이다. 
+j를 2부터 num1까지 반복실행 하면서 나머지가 0인 수가 있다면 그 때의 num1은 소수가 아니게되므로 break를 하고 num1이 소수여서 j가 i-1까지 진행됐다면 
+if문을 통해서 array배열에 k인덱스에 그때의 소수를 넣고 cnt를 1씩 증가시켜준다. 이때의 cnt는 나중에 배열이 숫자가 들어있는 곳까지 sum을 하기 위한 변수이다.
+그리고 마지막으로 sum이 0이면(=소수가 없으면) -1을 출력하고 아니면 합계와 최소값(배열의 0번째 인덱스)를 출력한다.*/
+![image](https://user-images.githubusercontent.com/80377779/118082971-1118d200-b3f9-11eb-826c-8fd25e2f2204.png)
+
+/*9-3 정수 N이 주어졌을 때, 소인수분해하는 프로그램을 작성하시오. 
+첫째 줄에 정수 N (1 ≤ N ≤ 10,000,000)이 주어진다. 
+N의 소인수분해 결과를 한 줄에 하나씩 오름차순으로 출력한다. N이 1인 경우 아무것도 출력하지 않는다.*/
+
+#include <stdio.h>
+
+int main()
+{
+	int a;
+	int i = 2;
+	scanf_s("%d", &a); //나눌 수를 직접 집어넣습니다.
+	while (a > 0) { //a가 양수인 동안
+		if (a % i == 0) { //i값으로 a가 나눠지면
+			printf("%d\n", i); //그 i값은 a의 인수이므로 출력합니다.
+			a /= i; //그리고 나눈 값을 다시 a에 집어넣습니다.
+		}
+		else i++; //나눠지지 않으면 i에 1을 더해 더 큰값으로 만들어 줍니다.
+	}
+	return 0;
+}
+
+//직접 입력한 정수를 소인수분해하는 프로그램입니다.
+![image](https://user-images.githubusercontent.com/80377779/118083005-1f66ee00-b3f9-11eb-87eb-bc76a9529a75.png)
+
+//9-4 M이상 N이하의 소수를 모두 출력하는 프로그램을 작성하시오.
+
+#define _CRT_SECURE_NO_WARNINGS
+
+#include<stdio.h>
+
+int main(void) {
+	int num1, num2, cnt = 0;
+	int j, k = 0;
+	int array[100];
+
+	scanf("%d %d", &num1, &num2);
+
+	for (int i = num1; i <= num2; i++) {
+
+		for (j = 2; j < i; j++) {
+			if (i % j == 0) break;
+		}
+		if (i == j) {
+			array[k++] = i;
+			cnt++;
+		}
+	}
+
+	for (int i = 0; i < cnt; i++) {
+		printf("%d\n", array[i]);
+	}
+	return 0;
+}
+
+//9-2의 문제와 알고리즘 동일하다. 다른점은 위의 문제에서는 합과 최소값을 출력했다면 이번 문제는 두 정수 사이에 있는 모든 소수를 출력한다.
+![image](https://user-images.githubusercontent.com/80377779/118083026-2b52b000-b3f9-11eb-9a10-ab463271fb68.png)
+
+/*9-5 베르트랑 공준은 임의의 자연수 n에 대하여, n보다 크고, 2n보다 작거나 같은 소수는 적어도 하나 존재한다는 내용을 담고 있다. 
+이 명제는 조제프 베르트랑이 1845년에 추측했고, 파프누티 체비쇼프가 1850년에 증명했다. 
+예를 들어, 10보다 크고, 20보다 작거나 같은 소수는 4개가 있다. (11, 13, 17, 19) 또, 14보다 크고, 28보다 작거나 같은 소수는 3개가 있다. 
+(17,19, 23) 자연수 n이 주어졌을 때, n보다 크고, 2n보다 작거나 같은 소수의 개수를 구하는 프로그램을 작성하시오. 입력은 여러 개의 테스트 케이스로 이루어져 있다. 
+각 케이스는 n을 포함하는 한 줄로 이루어져 있다. 입력의 마지막에는 0이 주어진다. 각 테스트 케이스에 대해서, n보다 크고, 2n보다 작거나 같은 소수의 개수를 출력한다. 1 ≤ n ≤ 123,456*/
+
+#define _CRT_SECURE_NO_WARNINGS 
+#include <stdio.h>
+
+int main() {
+	while(1) { //1은 true이므로 계속 반복합니다. 즉, 원하는 만큼 실행할 수 있습니다.
+		int a;
+		scanf("%d", &a); //a값을 직접 입력합니다.
+		int b = a; //그 값을 b에 집어넣습니다.
+		if (a == 0) break; //0일 때는 소수가 존재하지 않으므로 반복문을 탈출합니다.
+		for (int i = a + 1; i <= a * 2; i++) { //a와 a*2사이값을 하나하나 확인합니다.
+			for (int j = 2; j * j < a * 2; j++) { //i가 나눠지는지 확인합니다.
+				if (i % j == 0) { //j로 i가 나누어지면 소수가 아니므로
+					b--; //b에서 1을 빼주고
+					break; //다음 a로 넘어갑니다.
+				}
+			}
+		}
+		printf("%d\n", b); //소수의 개수를 출력합니다.
+	}
+	return 0;
+}
+
+//입력한 수부터 그 수의 2배 사이의 소수의 개수를 찾는 프로그램입니다.
+![image](https://user-images.githubusercontent.com/80377779/118083080-402f4380-b3f9-11eb-95d7-28818f6596b9.png)
+
+/*9-6 1보다 큰 자연수 중에서  1과 자기 자신을 제외한 약수가 없는 자연수를 소수라고 한다.
+예를 들어, 5는 1과 5를 제외한 약수가 없기 때문에 소수이다. 하지만, 6은 6 = 2 × 3 이기 때문에 소수가 아니다.
+골드바흐의 추측은 유명한 정수론의 미해결 문제로, 2보다 큰 모든 짝수는 두 소수의 합으로 나타낼 수 있다는 것이다. 
+이러한 수를 골드바흐 수라고 한다. 또, 짝수를 두 소수의 합으로 나타내는 표현을 그 수의 골드바흐 파티션이라고 한다. 
+예를 들면, 4 = 2 + 2, 6 = 3 + 3, 8 = 3 + 5, 10 = 5 + 5, 12 = 5 + 7, 14 = 3 + 11, 14 = 7 + 7이다. 10000보다 작거나 같은 모든 짝수 n에 대한 골드바흐 파티션은 존재한다.
+2보다 큰 짝수 n이 주어졌을 때, n의 골드바흐 파티션을 출력하는 프로그램을 작성하시오. 만약 가능한 n의 골드바흐 파티션이 여러 가지인 경우에는 두 소수의 차이가 가장 작은 것을 출력한다.*/
+
+#define _CRT_SECURE_NO_WARNINGS
+
+#include <stdio.h>
+int find(int n)
+{
+	if (n < 2) return 0;
+
+	for (int i = 2; i < n; i++)
+		if (n % i == 0)
+			return 0;
+
+	return 1;
+}
+int main(void)
+{
+	int size, num, i;
+	scanf("%d", &size);
+
+	while (size--)
+	{
+		scanf("%d", &num);
+
+		for (i = num / 2; i >= 2; i--)
+			if (find(i) && find(num - i))
+			{
+				printf("%d %d\n", i, num - i);
+				break;
+			}
+	}
+
+	return 0;
+}
+
+/*2개의 소수로 더해지는 짝수이기 때문에 짝수를 반으로 나눠서 1개는 반으로 나눈 짝수보다 작아지면서 소수를 판별하고 
+1개는 커지면서 소수를 판별했을 때 두 개 모두 소수가 맞다면 그 두 소수의 합이 입력한 num이 된다.*/
+![image](https://user-images.githubusercontent.com/80377779/118083125-55a46d80-b3f9-11eb-8798-a7dd9d8e65b6.png)
+
+/*9-7 한수는 지금 (x, y)에 있다. 직사각형의 왼쪽 아래 꼭짓점은 (0, 0)에 있고, 오른쪽 위 꼭짓점은 (w, h)에 있다. 
+직사각형의 경계선까지 가는 거리의 최솟값을 구하는 프로그램을 작성하시오. 1 ≤ w, h ≤ 1,000, 1 ≤ x ≤ w-1, 1 ≤ y ≤ h-1, x, y, w, h는 정수*/
+
+#define _CRT_SECURE_NO_WARNINGS 
+#include <stdio.h>
+
+int main() {
+	int x, y, w, h;
+	scanf("%d%d%d%d", &x, &y, &w, &h); //각각의 값을 직접 입력해줍니다.
+	if (w - x > h - y) printf("%d\n", h - y); //x축으로부터의 거리가 더 길면 y축으로 부터의 거리를 출력합니다.
+	else if(w - x < h - y) printf("%d\n", w - x); //y축으로부터의 거리가 더 길면 x축으로 부터의 거리를 출력합니다.
+	else printf("%d\n", h - y); //길이 차이가 같은 경우 둘 중 아무나 출력합니다.
+		
+	return 0;
+}
+
+//위치를 직접 정하고 최단거리를 출력하는 프로그램입니다.
+![image](https://user-images.githubusercontent.com/80377779/118083157-63f28980-b3f9-11eb-9cdd-78796ce0e380.png)
+
+//9-8 세 점이 주어졌을 때, 축에 평행한 직사각형을 만들기 위해서 필요한 네 번째 점을 찾는 프로그램을 작성하시오.
+
+#define _CRT_SECURE_NO_WARNINGS
+
+#include <stdio.h>
+
+int main(void) {
+	int num1, num2, num3, num4, num5, num6;
+	int x, y;
+
+	scanf("%d %d", &num1, &num2);
+	scanf("%d %d", &num3, &num4);
+	scanf("%d %d", &num5, &num6);
+
+	if (num1 == num3) {
+		if (num2 == num4) {
+			x = num5;
+			y = num6;
+		}
+		else if (num2 == num6) {
+			x = num5;
+			y = num4;
+		}
+		else {
+			x = num5;
+			y = num2;
+		}
+	}
+
+	else if (num1 == num5) {
+		if (num2 == num4) {
+			x = num3;
+			y = num6;
+		}
+		else if (num2 == num6) {
+			x = num3;
+			y = num4;
+		}
+		else {
+			x = num3;
+			y = num2;
+		}
+	}
+
+	else {
+		if (num2 == num4) {
+			x = num1;
+			y = num6;
+		}
+		else if (num2 == num6) {
+			x = num1;
+			y = num4;
+		}
+		else {
+			x = num1;
+			y = num2;
+		}
+	}
+	
+	printf("%d %d", x, y);
+
+	return 0;
+}
+
+//직사각형은 x, y좌표가 똑 같은 점 2개씩 있어야 한다. 따라서 사용자에게 3개의 xy좌표를 입력받고 if문으로 조건에 따라서 x와 y의 값을 정해준다.
+![image](https://user-images.githubusercontent.com/80377779/118083187-72d93c00-b3f9-11eb-9c3a-a99dae08feb5.png)
+
+/*9-9 과거 이집트인들은 각 변들의 길이가 3, 4, 5인 삼각형이 직각 삼각형인것을 알아냈다. 
+주어진 세변의 길이로 삼각형이 직각인지 아닌지 구분하시오. 각 입력에 대해 직각 삼각형이 맞다면 "right", 아니라면 "wrong"을 출력한다.*/
+
+#define _CRT_SECURE_NO_WARNINGS 
+#include <stdio.h>
+
+int main() {
+	int a, b, c;
+	scanf("%d%d%d", &a, &b, &c); //각각의 값을 직접 입력해줍니다.
+	if (a > b && a > c) { //a가 빗변일때
+		if (a * a == b * b + c * c) printf("right");
+		else printf("wrong");
+	}
+	else if (b > a && b > c) { //b가 빗변일때
+		if (b * b == a * a + c * c) printf("right");
+		else printf("wrong");
+	}
+	else if (c > b && c > a) { //c가 빗변일때
+		if (c * c == b * b + a * a) printf("right");
+		else printf("wrong");
+	}
+	else printf("wrong"); //두변이상 같은 길이이면 이등변 삼각형이므로 직각삼각형이 아닙니다.
+	return 0;
+}
+
+//세 변의 길이를 직접 입력하고 직각삼각형인지 아닌지 판단하는 프로그램입니다.
+![image](https://user-images.githubusercontent.com/80377779/118083226-7f5d9480-b3f9-11eb-8794-d52f03b3ab9d.png)
+
+/*9-11 이석원은 조규현과 백승환에게 상대편 마린(류재명)의 위치를 계산하라는 명령을 내렸다. 
+조규현과 백승환은 각각 자신의 터렛 위치에서 현재 적까지의 거리를 계산했다. 조규현의 좌표 (x1, y1)와 백승환의 좌표 (x2, y2)가 주어지고, 
+조규현이 계산한 류재명과의 거리 r1과 백승환이 계산한 류재명과의 거리 r2가 주어졌을 때, 류재명이 있을 수 있는 좌표의 수를 출력하는 프로그램을 작성하시오. 
+한 줄에 x1, y1, r1, x2, y2, r2가 주어진다. x1, y1, x2, y2는 -10,000보다 크거나 같고, 10,000보다 작거나 같은 정수이고, r1, r2는 10,000보다 작거나 같은 자연수이다. 
+각 테스트 케이스마다 류재명이 있을 수 있는 위치의 수를 출력한다. 만약 류재명이 있을 수 있는 위치의 개수가 무한대일 경우에는 -1을 출력한다.*/
+
+#define _CRT_SECURE_NO_WARNINGS 
+#include <stdio.h>
+#include<math.h> //sqrt, pow함수를 쓰기위해 넣었습니다.
+
+int main() {
+    int n, m, result;
+    int x1, y1, r1, x2, y2, r2;
+    double distance, r1_r2;
+    scanf("%d", &n);
+    for (m = 0; m < n; m++) {
+        scanf("%d %d %d %d %d %d", &x1, &y1, &r1, &x2, &y2, &r2);
+        distance = sqrt(pow(x1 - x2, 2) + pow(y1 - y2, 2)); //두 원 사이의 거리를 구합니다.
+        r1_r2 = r1 > r2 ? r1 - r2 : r2 - r1; //어느 쪽이 큰지 모르기 때문에 삼항연산자를 사용해 둘 중에 큰값에서 작은값을 뺀 값을 r1_r2에 넣어줍니다.
+        if (distance < r1 + r2 && distance > r1_r2) result = 2; //두 원의 교점이 2개 생기는 경우입니다.
+        else if (distance == 0 && r1 == r2) result = -1; //두 원이 겹치는 경우이기 때문에 -1을 result값에 넣어줍니다.
+        else if (distance == r1 + r2 || distance == r1_r2) result = 1; //두 원이 접하는 경우입니다.
+        else result = 0; //두 원이 만나지 않는 경우입니다.
+        printf("%d\n", result);
+    }
+}
+
+//원 두개의 중심과 반지름을 직접 입력하고 두 원의 교점을 구하는 문제입니다.
+![image](https://user-images.githubusercontent.com/80377779/118083283-913f3780-b3f9-11eb-8622-9ac841ac5ae0.png)
